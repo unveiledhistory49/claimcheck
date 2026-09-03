@@ -1,0 +1,32 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test-lint-typecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci || npm install
+
+      - name: Run tests (npm test)
+        run: npm test
+
+      - name: ESLint (npm run lint)
+        run: npm run lint
+
+      - name: Typecheck (npm run typecheck)
+        run: npm run typecheck
+
+      - name: Dependency audit
+        run: npm audit --audit-level=high

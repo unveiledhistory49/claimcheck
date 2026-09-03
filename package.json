@@ -1,0 +1,32 @@
+{
+  "name": "claimcheck",
+  "version": "1.0.0",
+  "description": "Insurance claims processing engine: intake, validation, fraud checks, adjudication rules, workflow, reserves.",
+  "type": "module",
+  "main": "dist/server.js",
+  "bin": {
+    "claimcheck": "dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json && cp src/schema.sql dist/schema.sql",
+    "start": "node dist/server.js",
+    "cli": "node dist/cli.js",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src test",
+    "e2e": "bash scripts/e2e.sh"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.18.1",
+    "vitest": "^3.2.7"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
